@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://q3364v7buigo"]
+
+[ext_resource type="Script" uid="uid://c5kamtdns01x" path="res://scripts/torreta.gd" id="1_gadoe"]
+[ext_resource type="Texture2D" uid="uid://6bfuqk521ojo" path="res://assets/torreta1.png" id="1_ync1w"]
+[ext_resource type="Texture2D" uid="uid://k0pu4j14ldxi" path="res://assets/torreta2.png" id="2_gadoe"]
+[ext_resource type="Texture2D" uid="uid://csw3hj5tv6xjq" path="res://assets/ataquetorreta.png" id="3_5hnws"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5hnws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ync1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5hnws")
+}],
+"loop": true,
+"name": &"atacar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ync1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gadoe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwe57"]
+size = Vector2(18.5, 46)
+
+[node name="torreta" type="Node2D" groups=["torreta"]]
+script = ExtResource("1_gadoe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.8146973e-06, 9.536743e-07)
+scale = Vector2(0.75, 0.703125)
+sprite_frames = SubResource("SpriteFrames_5hnws")
+animation = &"atacar"
+autoplay = "idle"
+frame_progress = 0.7458891
+
+[node name="Area2D" type="Area2D" parent="." groups=["torreta"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(13.25, -1)
+shape = SubResource("RectangleShape2D_kwe57")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(500, 0)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(22, -9)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
