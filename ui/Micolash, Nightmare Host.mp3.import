@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcfcdfd0l5tya"
+path="res://.godot/imported/Micolash, Nightmare Host.mp3-d5ab9d5932c65ed427cc6f9257651d9b.mp3str"
+
+[deps]
+
+source_file="res://ui/Micolash, Nightmare Host.mp3"
+dest_files=["res://.godot/imported/Micolash, Nightmare Host.mp3-d5ab9d5932c65ed427cc6f9257651d9b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

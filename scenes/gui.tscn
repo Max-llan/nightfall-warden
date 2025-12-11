@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://qulmvwllkoqv"]
+
+[ext_resource type="Texture2D" uid="uid://cvhk643cxlvsu" path="res://assets/gold.png" id="1_efmwq"]
+[ext_resource type="Script" uid="uid://bnapj1gs5rl2d" path="res://scripts/gui.gd" id="1_ynd5l"]
+[ext_resource type="PackedScene" uid="uid://cd7otllquxi5c" path="res://scenes/card.tscn" id="2_mfius"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 89.0
+offset_right = 3.0
+offset_bottom = -487.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ynd5l")
+
+[node name="header" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.037
+anchor_bottom = 0.062000003
+offset_right = 0.040000916
+offset_bottom = -0.1760025
+
+[node name="coin" type="Label" parent="header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4250001
+anchor_top = 0.6
+anchor_right = 2.3500001
+anchor_bottom = 1.1750001
+offset_left = -3.0000038
+offset_top = 21.4272
+offset_right = -3.0000076
+offset_bottom = 41.9616
+text = "$200"
+
+[node name="TextureRect" type="TextureRect" parent="header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57500005
+anchor_top = 0.5
+anchor_right = 1.3750001
+anchor_bottom = 1.2750001
+offset_left = 1.9999981
+offset_top = 16.856003
+offset_right = 1.9999962
+offset_bottom = 45.532803
+texture = ExtResource("1_efmwq")
+
+[node name="table" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 95.0
+offset_top = 22.0
+offset_right = 125.0
+offset_bottom = 63.0
+
+[node name="Mazo" type="HBoxContainer" parent="table"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.575
+anchor_top = -0.075
+anchor_right = 9.225
+anchor_bottom = 1.075
+offset_left = -48.25
+offset_top = -25.925003
+offset_right = -48.25
+offset_bottom = 10.924995
+
+[node name="Card" parent="table/Mazo" instance=ExtResource("2_mfius")]
+layout_mode = 2

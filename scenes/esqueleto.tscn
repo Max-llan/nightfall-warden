@@ -116,25 +116,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8lw0"]
-size = Vector2(13, 81)
+size = Vector2(13, 68)
 
 [node name="esqueleto" type="PathFollow2D"]
 script = ExtResource("1_tlre5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.06250286, -0.35416985)
-scale = Vector2(0.33291665, 0.60472214)
+position = Vector2(0, -7.1525574e-07)
+scale = Vector2(0.4149479, 0.5391124)
 sprite_frames = SubResource("SpriteFrames_j6po5")
-animation = &"caminar"
+animation = &"ataca"
 autoplay = "caminar"
-frame_progress = 0.39957598
+frame_progress = 0.6088636
 
 [node name="Area2D" type="Area2D" parent="." groups=["esqueleto"]]
 collision_layer = 2
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5.5, 4.5)
 shape = SubResource("RectangleShape2D_f8lw0")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

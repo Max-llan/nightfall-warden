@@ -1,42 +1,47 @@
 extends PanelContainer
 
 var torretas = preload("res://scenes/torreta.tscn")
-var construccion = false
-var conteo = 0
+var tiene_torreta = false
 
 func _ready():
-	self_modulate = "ffffff00"
-		
+	self_modulate = Color(1, 1, 1, 0)
+	mouse_filter = Control.MOUSE_FILTER_PASS
 
 func _process(_delta):
-	conteo = $Marker2D.get_child_count()
-	if conteo == 1:
-		construccion = true
-	if construccion == true:
-		if Global.comprovacion == true:
-			if Input.is_action_just_pressed("click"):
-				if conteo == 0:
-					var player = torretas.instantiate()
-					$Marker2D.add_child(player)
-					construccion = false
+	tiene_torreta = $Marker2D.get_child_count() > 0
+	
+	# Colocar torreta cuando hace click en modo compra
+	if Global.modo_compra and not tiene_torreta:
+		if Input.is_action_just_pressed("click"):
+			var mouse_pos = get_global_mouse_position()
+			var rect = get_global_rect()
+			if rect.has_point(mouse_pos):
+				if Global.gastar_monedas(Global.costo_torreta):
+					# Crear torreta permanente
+					var torreta_permanente = torretas.instantiate()
+					$Marker2D.add_child(torreta_permanente)
+					torreta_permanente.global_position = $Marker2D.global_position
+					
+					if torreta_permanente.has_method("set_carril"):
+						torreta_permanente.set_carril(get_carril_actual())
+					
+					# Limpiar torreta temporal
 					get_tree().get_nodes_in_group("Main")[0]._reset()
-					print(conteo)
-		
+					
+					# Resetear modo compra
+					Global.modo_compra = false
+					Global.comprovacion = false
+
+func get_carril_actual() -> float:
+	return $Marker2D.global_position.y
 
 func _on_mouse_entered():
-	if conteo == 0:
+	if not tiene_torreta and Global.modo_compra:
 		Global.comprovacion = true
-		construccion = true
 		Global.ubicacion = $Marker2D.global_position
-		print(construccion)
-	
-
-
+	modulate = Color(1.2, 1.2, 1.2)
 
 func _on_mouse_exited() -> void:
-	if conteo == 0:
-		construccion = false
-		Global.comprovacion = false
-		Global.ubicacion = get_global_mouse_position()
-		print(construccion)
-	
+	Global.comprovacion = false
+	modulate = Color(1, 1, 1)
+

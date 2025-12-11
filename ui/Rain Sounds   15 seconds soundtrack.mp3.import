@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpppyqpoe3jdk"
+path="res://.godot/imported/Rain Sounds   15 seconds soundtrack.mp3-98c0f6f63dc26bf4306cd42a817a1949.mp3str"
+
+[deps]
+
+source_file="res://ui/Rain Sounds   15 seconds soundtrack.mp3"
+dest_files=["res://.godot/imported/Rain Sounds   15 seconds soundtrack.mp3-98c0f6f63dc26bf4306cd42a817a1949.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
